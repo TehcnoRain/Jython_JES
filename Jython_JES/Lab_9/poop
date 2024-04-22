@@ -1,6 +1,4 @@
-#Name: Zhang Liang
-
-#St.num: 4196705 #assignment:5 def weatherNow(city):
+def weatherNow(city):
 
 import urllib
 
@@ -18,7 +16,7 @@ box1 = string.find("<td nowrap bgcolor=white align=center><div id=smtext>", curr
 
 boxer1 = string.find("<img src=",currentLoc) boxer2 = string.find("border=0 hspace=3>", boxer1) img = string[boxer1:boxer2+18]
 
-temp = img + weather+ ",with a temperature of hightest "+str(weather1) + " and lowest "+str(weather2)+" ¡C "+" on " +date
+temp = img + weather+ ",with a temperature of hightest "+str(weather1) + " and lowest "+str(weather2)+" Â¡C "+" on " +date
 
 print temp return temp
 
