@@ -1,0 +1,15 @@
+def copyPicToCanvas(xStart, yStart):
+  canvas = makeEmptyPicture(750, 750)
+  pic = makePicture(pickAFile()) #Pick a small picture!
+  for x in range(getWidth(pic)):
+    for y in range(getHeight(pic)):
+      p = getPixel(pic, x, y)
+      canvasP = getPixel(canvas, x+xStart, y+yStart)
+      colour = getColor(p)
+      setColor(canvasP,colour)
+  addText(canvas,50,50,"Hellow World", red)
+  addLine(canvas,50,60,130,60,blue))
+  #addTextWithStyles()
+  setColor(canvasP, colour)
+  show(canvas)
+  return canvas  

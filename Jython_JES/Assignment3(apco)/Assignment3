@@ -1,0 +1,64 @@
+#Shane Thomas
+#5901368
+
+def assign3PartA():
+ 
+  file = pickAFile()
+  picture = makePicture(file)
+  startX = getWidth(picture)/2 - 60
+  startY = 30
+  X = getWidth(picture)/2 - 60
+  Y = 500
+  c1 = makeColor(255,100,50)
+  c2 = makeColor(0,0,255)
+  text1 = "Fish" 
+  text2 = "Like to swim! "
+  addTextToPic(picture,c1,text1,startX,startY)
+  addTextToPic(picture,c2,text2,X,Y)
+  show (picture) 
+  
+def addTextToPic(p,c,text,startX,startY): 
+  if startX  < 0 or startX >getWidth(p):
+    startX = getWidth(p)/2
+  if startY < 0 or startY > getHeight(p):
+    startY = getHeight(p)/2
+    
+  addText(p,startX,startY,text,c)
+  
+def assign3PartB():
+  minOvals = 1
+  maxOvals = 100
+  minWidth = 40
+  minHeight = 60
+  width = 640
+  height = 480
+  randomOvals(minOvals,maxOvals,minWidth,minHeight,width,height)  
+
+def randomOvals(minOvals,maxOvals,minWidth,minHeight,width,height):
+  import random
+  canvas = makeEmptyPicture(width,height,black)
+  numberOvals = 0 
+  X = 0 
+  Y = 0
+  color = 0
+  Area = 0
+  Width = 0 
+  Height = 0
+ 
+  ovals = random.randrange(minOvals,maxOvals+1)
+  for oval in range(1,ovals +1 ):
+    r = random.randrange(256)
+    g = random.randrange(256)
+    b = random.randrange(256)
+    randomcolor = makeColor(r,g,b)
+    startX = random.randrange(0, getWidth(canvas))
+    startY = random.randrange(0, getHeight(canvas))
+    randomheight = random.randrange(minWidth, minWidth + 50)
+    randomwidth = random.randrange(minWidth, minWidth + 10)
+    addOvalFilled(canvas, startX, startY, randomwidth, randomheight, randomcolor)
+    area = randomwidth * randomheight
+    Ovalnumber = "The total number of ovals: " + str(ovals)
+    addText(canvas, (width/2-60), 20, Ovalnumber, white)
+    
+  
+  show(canvas)  

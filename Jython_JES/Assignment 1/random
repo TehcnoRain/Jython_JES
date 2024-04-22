@@ -1,0 +1,11 @@
+def conditionalLines2(width, height, rangeVar):
+ canvas = makeEmptyPicture(width, height, black)
+ for i in range(rangeVar, width-rangeVar, rangeVar):
+   if (i%20 == 0):
+     addLine(canvas, i, 40, i, height/2, white)
+   else:
+     if (i%10 == 0):
+       addLine(canvas, i, 20, i, height-20, red)
+     else:
+       addLine(canvas, i, height/2, i, height-40, blue)
+ explore(canvas)

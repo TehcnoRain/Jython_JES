@@ -1,0 +1,21 @@
+def Assign2A():
+  num = input("Enter a number between 1 and 100 inclusive: ")
+  x= 1
+  while x <= 4:
+    if (0 < num <= 100):
+      num = input("Enter a number between 1 and 100 inclusive: ")
+      x = x+1
+    else: break
+    
+def Assign2B():
+  str = raw_input("")
+  char = input("") 
+  if (1 <= len(char) <= 5):
+    print str.replace(" ",char) 
+  if (len(char) == 0) :
+    print "Null phrase. Enter at least one character, a word, or words separated by a space or spaces" 
+  if (len(char) > 5):
+    print "Padding must be between 1 and 5 characters."
+    
+  
+  

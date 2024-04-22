@@ -1,0 +1,79 @@
+#Name: Zhang Liang
+
+#St.num: 4196705 #assignment:5 def weatherNow(city):
+
+import urllib
+
+connection = urllib.urlopen("http://weather.canoe.ca/Weather/World.html") string= connection.read() connection.close() currentLoc = string.find(city) currentLoc2 = string.find("Date") temp = ""
+
+if currentLoc == -1 :
+
+temp = "that city doesnt exist" else:
+
+currentLoc = string.find("weatherred", currentLoc)
+
+boxz = string.find("<tr><td bgcolor=#ffffff><div id=smtext>",currentLoc) boxy = string.find("</div></td>",currentLoc) weather = string[boxz+39:boxy]
+
+box1 = string.find("<td nowrap bgcolor=white align=center><div id=smtext>", currentLoc) box2 = string.find("<td nowrap bgcolor=white align=center><div id=smtext>", box1 ) weather1 = string[box2+53:box2+55] weather2 = string[box2+71:box2+73] currentLoc2 = string.find("Timestamp",currentLoc2) boxq = string.find("November",currentLoc2) date = string[boxq:boxq+17]
+
+boxer1 = string.find("<img src=",currentLoc) boxer2 = string.find("border=0 hspace=3>", boxer1) img = string[boxer1:boxer2+18]
+
+temp = img + weather+ ",with a temperature of hightest "+str(weather1) + " and lowest "+str(weather2)+" ¡C "+" on " +date
+
+print temp return temp
+
+def randomQuote(): file = pickAFile() printNow(file) lineCount = getNumberOfLines(file)
+
+print getRandomQuote(file,lineCount) temp = getRandomQuote(file,lineCount)
+
+https://www.coursehero.com/file/8900671/assign5/
+
+return temp
+
+def getRandomQuote(file,numberOfLines):
+
+import random
+
+randomLine = random.randrange(0,numberOfLines)
+
+currentLine= 0 for line in open(file).readlines(): if currentLine == randomLine: return line currentLine = currentLine + 1
+
+def getNumberOfLines(file): return len(open(file).readlines())
+
+def assignment5(city1,city2):
+
+setMediaPath()
+
+file = open(getMediaPath('assignment5.html'),'wt') file.write(title("Assignment 5 ,November2010"))
+
+file.write(bodyStart("<center><h1><p>APCO/IASC 1P00 Assignment5,November 2010"+"</p></h1></center>"))
+
+file.write(body("<h1>______________________________________________________
+
+_______________</h1>"))
+
+file.write(body("<h5><p>The Weather forecast for " +city1 +" is :"+"</p>")) file.write(body("<p>"+str(weatherNow(city1))+ "</p>"))
+
+file.write(body("<h3>______________________________________________________ ____________________________________________________________________</h3
+
+>"))
+
+file.write(body("<p>The Weather forecast for " +city2 +" is :"+"</p>")) file.write(body("<p>"+str(weatherNow(city2))+"</p></h5>"))
+
+file.write(body("<h1>______________________________________________________
+
+_______________</h1>"))
+
+file.write(bodyEnd("<h5><p>" + str(randomQuote())+"</p></h5>")) file.close()
+
+def title(titleString):
+
+return"<html><head><title>" + titleString +"</title></head>"
+
+def bodyStart(bodyString) : return "<body>" + bodyString
+
+def bodyEnd(bodyString) :
+
+return bodyString + "</body></html>"
+
+def body(bodyString): return bodyString

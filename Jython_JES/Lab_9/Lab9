@@ -1,0 +1,39 @@
+def makeHomePage(name,interest):
+  setMediaPath()
+  file = open(getMediaPath('hopepage.html'),'wt')
+  file.write(title(name + " 'sHomePage"))
+  file.write(body("<h1>Welcome to " + name + " 's Home Page</h1>\
+    <p>Hi! I am " + name + ". This is my home Page!</h1>\
+    I am interested in " +interest + " </p>"))
+  file.close()
+
+def title(titlestring):
+  return "<html><head><title>" + titlestring + "</title></head?"
+ 
+def body(bodystring):
+  return "<body>"+bodystring+"</body></html>"
+  
+#Part2  
+  
+def findExchangeRate():
+  import urllib
+  # The following MUST be on one line
+  connection = urllib.urlopen("http://www.bankofcanada.ca/rates/exchange/daily-closing-past-five-day/")
+  rate = connection.read()
+  connection.close()
+  currentLoc = rate.find('title ="U.S. dollar (close)"')
+  nextLoc = rate.find('<th>2016-03-15</th>')
+ 
+  if currentLoc != -1:
+    rateLocEnd = rate.rfind("</td>", 0, currentLoc) #Should really test for -1 again...
+    rateLocStart = rate.rfind("<td>",0, rateLocEnd) #Should really test for -1 again...
+    nextLocEnd = rate.rfind("</th>", 0, nextLoc) #Should really test for -1 again...
+    nextLocStart = rate.rfind("<th>",0, nextLocEnd) #Should really test for -1 again...
+    rateCloseLastWorkingDay = rate[rateLocStart+4:rateLocEnd] 
+    rateDate = rate[nextLocStart+4:nextLocEnd]
+    print "Last Working Day's Closing Rate of Exchange was: 1 USD = ",\
+           rateCloseLastWorkingDay, "Canadian Dollars on the date of", rateDate
+  else:
+    print "Sorry, I can't find the info you requested.",\
+          "Maybe the web page has changed.",\
+          "Talk to your friendly programmer about this problem!"

@@ -1,0 +1,29 @@
+def increaseContrast(file, threshold):
+    file = pickAFile()
+    picture = makePicture(file) 
+    
+    show(picture)
+    pix = getAllPixels(picture)
+    for p in pix:
+      count = 0
+      count = count + 1
+      if count % 1000 ==0:
+        repaint(picture)    
+      intensity = (getRed(p) + getGreen(p) + getBlue(p))/3
+      c = getColor(p)
+      if (intensity < threshold):
+        newColour = makeDarker(c)
+      else:                  # i.e. greater than or equal to threshold
+        newColour = makeLighter(c)
+      setColor(p, newColour)
+    return picture
+
+def grayByChannel(fileName):
+    fileName = pickAFile()
+    grayRed = makePicture(fileName)
+    pix = getAllPixels(grayRed)
+    for p in pix:
+      r = getBlue(p)
+      c = makeColor(r, r, r)  #Gray, based on red channel
+      setColor(p,c)
+    show(grayRed)

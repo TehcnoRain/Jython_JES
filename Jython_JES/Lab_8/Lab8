@@ -1,0 +1,27 @@
+def mixCase(myString):
+    case = "U"
+    end = ""
+    for letter in range(len(myString)):
+      tempString = myString[End:len(myString)]
+      if case == "U":
+        print tempString.upper()
+        case = "L"
+      else:
+        print tempString.lower()
+        case = "U"
+        
+def MaleFemale(stringz):
+  x= stringz.count("m") 
+  y= stringz.count("M")
+  z= stringz.count("F")
+  w=stringz.count("f")
+  m = x + y
+  f = z + w
+  print m
+  print f
+  
+  
+    
+      
+                
+      

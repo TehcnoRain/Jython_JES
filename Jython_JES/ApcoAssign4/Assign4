@@ -1,0 +1,88 @@
+#Name : Shane Thomas
+#St.Number :5901368
+#assign 4
+
+def openSoundOrPicture():
+  file = pickAFile()
+  length = len(file)
+  period = file.rfind('.')
+  if file.endswith(".jpg") :
+    printNow("You selected a .jpg picture file")
+    show(makePicture(file))
+    #printNow("type is :"+ file[period+1:length])
+  elif file.endswith(".wav") :
+    printNow("You selected a .wav sound file")
+    play(makeSound(file))
+    #printNow("type is :"+ file[period+1:length])
+  else :
+    printNow("Oh oh! Did not choose a picture or sound file")
+    printNow("type is : "+file[period+1:length])
+    
+    
+
+
+  
+def smoothSound(file,x):
+  
+  import random
+  maxAmp = x
+  noisy = makeEmptySound(65000)
+  for s in getSamples(noisy):
+    setSample(s, random.randrange(-maxAmp, maxAmp+1))
+  f = pickAFile()
+  sound = makeSound(f)
+  SSamples = 0
+  BSamples = 0
+  BSound = 0
+  Num1Samples = getNumSamples(sound)
+  Num2Samples = getNumSamples(noisy)
+  
+  if Num1Samples < Num2Samples :
+    SSamples = Num1Samples
+    BSamples = Num2Samples
+    BSound = 2
+  else :
+    SSamples = Num2Samples
+    BSamples = Num1Samples
+    BSound = 1
+  
+  addedSound = makeEmptySound(BSamples)
+  for sampleNumber in range(BSamples):
+    if sampleNumber < SSamples :
+      sample1 = getSampleValueAt(sound, sampleNumber)
+      sample2 = getSampleValueAt(noisy, sampleNumber)
+      setSampleValueAt(addedSound, sampleNumber, sample1 + sample2)
+    else : 
+      if BSound == 1 :
+        sample1 = getSampleValueAt(sound, sampleNumber)
+        setSampleValueAt(addedSound, sampleNumber, sample1)
+      else :
+        sample2 = getSampleValueAt(noisy, sampleNumber)
+        setSampleValueAt(addedSound, sampleNumber, sample2)
+  #play (addedSound)
+  openSoundTool(addedSound)
+  
+  reduceSound = makeEmptySound(BSamples)
+  for sampleNumber in range(BSamples):
+    if sampleNumber < SSamples:
+      sample1 = getSampleValueAt(sound,sampleNumber)
+      sample2 = getSampleValueAt(addedSound,sampleNumber) 
+      setSampleValueAt(reduceSound,sampleNumber,(sample1+sample2)/2)
+  #play (reduceSound)
+  
+  openSoundTool(reduceSound)
+  smoothSound = makeEmptySound(BSamples)
+  for sampleNumber in range(BSamples):
+    if sampleNumber < SSamples :
+      sample1 = getSampleValueAt(sound,sampleNumber)
+      sample2 = getSampleValueAt(reduceSound,sampleNumber)
+      
+      setSampleValueAt(smoothSound,sampleNumber,(sample1+sample2)/2)
+      
+  #play(smoothSound)
+  openSoundTool(smoothSound)   
+  
+  
+  
+  
+  

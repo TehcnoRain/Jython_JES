@@ -1,0 +1,25 @@
+# Please turn down the volume on the computer!!!
+def randomNoise(A,B):
+   import random
+   maxAmp = A    #Not too loud!
+   noisy = makeEmptySound(B)
+   for s in getSamples(noisy):
+     setSample(s, random.randrange(-maxAmp, maxAmp+1))
+
+     # Please turn the volume down!!!  \
+   return noisy
+
+def addSounds(sound1,sound2):
+  addedSound = makeEmptySound(getNumSamples(sound2))
+  for sampleNumber in range(getNumSamples(sound1)):
+    sample1 = getSampleValueAt(sound1, sampleNumber)
+    sample2 = getSampleValueAt(sound2, sampleNumber)
+    setSampleValueAt(addedSound, sampleNumber, sample1 + sample2)
+  play(addedSound)
+  return addedSound
+  
+def noiseAdded(file,noiseAmplitude):
+  noise = randomNoise(noiseAmplitude,64513)
+  sound = makeSound(file)
+  addSounds(noise,sound)
+  
