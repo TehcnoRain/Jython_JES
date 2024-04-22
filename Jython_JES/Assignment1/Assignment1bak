@@ -1,0 +1,15 @@
+def assignPartA():
+  First = String("Shane")
+  Last = String("Thomas")
+  Student = String("5901368")
+  prog = String("Business Economics")
+  year = String("Year 1 of ")
+  print "Name: " + First + Last
+  print "St Number: " + Student
+  print "Program: " + year + prog
+  print "I am taking this course because I am interested in learning the program python."
+  
+def assignPartB(discount):
+  orgPrice = input("Enter the original price of the item: ") 
+  sale  =  orgPrice - (discount % orgPrice)
+  print "Sale price of the item is:" , sale
